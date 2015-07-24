@@ -16,6 +16,7 @@
 package com.flaviofaria.kenburnsview;
 
 import android.graphics.RectF;
+import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
@@ -24,10 +25,13 @@ import java.util.Random;
 public class RandomTransitionGenerator implements TransitionGenerator {
 
     /** Default value for the transition duration in milliseconds. */
-    public static final int DEFAULT_TRANSITION_DURATION = 10000;
+    public static final int DEFAULT_TRANSITION_DURATION = 12000;
 
     /** Minimum rect dimension factor, according to the maximum one. */
-    private static final float MIN_RECT_FACTOR = 0.90f;
+    // Original value 0.75f
+    private static final float MIN_RECT_FACTOR = 0.95f;
+    // Original value 1.0f
+    private static final float MAX_RECT_FACTOR = 0.98f;
 
     /** Random object used to generate arbitrary rects. */
     private final Random mRandom = new Random(System.currentTimeMillis());
@@ -115,9 +119,10 @@ public class RandomTransitionGenerator implements TransitionGenerator {
             float b = (drawableBounds.width() / viewportRect.width()) * viewportRect.height();
             maxCrop = new RectF(0, 0, r, b);
         }
+        // Log.i(RandomTransitionGenerator.class.getSimpleName(), "MaxCrop: " + maxCrop.width() + ", " + maxCrop.height());
 
         float randomFloat = MathUtils.truncate(mRandom.nextFloat(), 2);
-        float factor = MIN_RECT_FACTOR + ((1 - MIN_RECT_FACTOR) * randomFloat);
+        float factor = MIN_RECT_FACTOR + ((MAX_RECT_FACTOR - MIN_RECT_FACTOR) * randomFloat);
 
         float width = factor * maxCrop.width();
         float height = factor * maxCrop.height();
