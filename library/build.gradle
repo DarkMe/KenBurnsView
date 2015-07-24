@@ -3,7 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 android {
-    buildToolsVersion "21.0.1"
+    buildToolsVersion "21.1.2"
     compileSdkVersion 21
 }
 

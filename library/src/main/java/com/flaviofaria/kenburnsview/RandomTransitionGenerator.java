@@ -27,7 +27,7 @@ public class RandomTransitionGenerator implements TransitionGenerator {
     public static final int DEFAULT_TRANSITION_DURATION = 10000;
 
     /** Minimum rect dimension factor, according to the maximum one. */
-    private static final float MIN_RECT_FACTOR = 0.75f;
+    private static final float MIN_RECT_FACTOR = 0.90f;
 
     /** Random object used to generate arbitrary rects. */
     private final Random mRandom = new Random(System.currentTimeMillis());
